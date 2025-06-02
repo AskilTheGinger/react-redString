@@ -3,20 +3,25 @@ import ReactDOM from 'react-dom/client';
 
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function Tekst() {
-  const knapp = function () {
-    const rootElement = document.getElementById('root');
-    let a= document.createElement("h1")
-    a.innerHTML="knappen knappet"
-    rootElement.appendChild(a)
-  }
+
+function MainSite() {
+  
   return (
-    <div> <button id='knapp' onClick={knapp}> trykk ikke meg</button> </div>
-  );
+    <main>
+      <header className='overskrift'>
+        <h1>Redstring</h1>
+      </header>
+      <div id='hovedElement'>
+       {/* <NotatForm /> */} 
+        <div className='notater'></div>
+      </div>
 
+    </main>
+  );
 }
-root.render(<Tekst />);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<MainSite />);
 
 
