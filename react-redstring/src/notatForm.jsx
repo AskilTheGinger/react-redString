@@ -1,47 +1,71 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React, { useState } from 'react';
+import Note from './notat';
 
-function NotatForm(){
-    const [inputs, setInputs] =useState({})
-    const handleChange = (event) =>{
-        const name =event.target.name
-        const value= event.target.value
-        setInputs(values =>({...values,[name]: value}))
+function NotatForm() {
+  const [inputs, setInputs] = useState({});
+  const [notes, setNotes] = useState([]); // state to store notes
 
-    }
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        
-    }
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
 
-    return(
-        <div className='formElement'>
-            <h2 className='formoverskrift'>lag notater her:</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="Overskrift">
-                    <input 
-                    type="text"
-                    value={overskrift}
-                    name="overskrift"
-                    onChange={handleChange}
-                    className='overskriftInput'
-                    />
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-                </label>
-                <label htmlFor="Notat:">
-                    <textarea 
-                    name="notat" 
-                    id="notatForm" 
-                    value={notat}
-                    onChange={handleChange}
-                    />
-                </label>
-                
-            </form>
-            </div>
-        
-    )
+    // Add the current input as a new note
+    setNotes((prevNotes) => [
+      ...prevNotes,
+      {
+        overskrift: inputs.overskrift || "",
+        notat: inputs.notat || ""
+      }
+    ]);
+
+    // Optionally reset form
+    setInputs({});
+  };
+
+  return (
+    <div className='formElement'>
+      <h2 className='formoverskrift'>Lag notater her:</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          <input
+            type="text"
+            value={inputs.overskrift || ""}
+            name="overskrift"
+            onChange={handleChange}
+            className='overskriftInput'
+            placeholder="Overskrift"
+          />
+        </label>
+        <label>
+          <textarea
+            name="notat"
+            id="notatForm"
+            value={inputs.notat || ""}
+            onChange={handleChange}
+            placeholder="Skriv notatet her..."
+          />
+        </label>
+        <input type="submit" value="Lagre" />
+      </form>
+
+      {/* Renders all notes */}
+      <div className="notater">
+        {notes.map((note, index) => (
+          <Note key={index} overskrift={note.overskrift} notat={note.notat} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
+export default NotatForm;
 
-export default NotatForm
+
+
+
+
+

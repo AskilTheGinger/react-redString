@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-
-
+import NotatForm from './notatForm';
 
 
 function MainSite() {
@@ -13,7 +12,7 @@ function MainSite() {
         <h1>Redstring</h1>
       </header>
       <div id='hovedElement'>
-       {/* <NotatForm /> */} 
+       <NotatForm /> 
         <div className='notater'></div>
       </div>
 
