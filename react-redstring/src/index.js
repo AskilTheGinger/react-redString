@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import NotatForm from './notatForm';
+import "./styles/style.css"
 
 
 function MainSite() {
@@ -11,10 +12,10 @@ function MainSite() {
       <header className='overskrift'>
         <h1>Redstring</h1>
       </header>
-      <div id='hovedElement'>
+      
        <NotatForm /> 
-        <div className='notater'></div>
-      </div>
+        
+
 
     </main>
   );

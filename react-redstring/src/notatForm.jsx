@@ -27,10 +27,11 @@ function NotatForm() {
   };
 
   return (
-    <div className='formElement'>
-      <h2 className='formoverskrift'>Lag notater her:</h2>
+    <div className='hovedElement'>
+      
       <form onSubmit={handleSubmit}>
         <label>
+        <h2 className='formoverskrift'>Lag notater her:</h2>
           <input
             type="text"
             value={inputs.overskrift || ""}
@@ -49,7 +50,7 @@ function NotatForm() {
             placeholder="Skriv notatet her..."
           />
         </label>
-        <input type="submit" value="Lagre" />
+        <input type="submit" value="Lagre" className='submit'/>
       </form>
 
       {/* Renders all notes */}
